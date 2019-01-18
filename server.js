@@ -12,13 +12,21 @@ const image = require('./controllers/image');
 const db = knex({
     client: 'pg',
     connection: {
-        host: 'localhost',
-        user: 'postgres',
-        password: 'test',
-        database: 'facerecognition'
-
+        connectionString: process.env.DATABASE_URL,
+        ssl: true
     }
 });
+
+// const db = knex({
+//     client: 'pg',
+//     connection: {
+//         host: 'localhost',
+//         user: 'postgres',
+//         password: 'test',
+//         database: 'facerecognition'
+
+//     }
+// });
 
 db.select('*').from('users').then(data => {
     console.log
